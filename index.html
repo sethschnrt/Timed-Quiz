@@ -10,119 +10,22 @@
 
   <body>
     <header>
-      <div class="High-Scores" id="scores-menu">View High Scores</div>
-      <div class="Timer" id="count-down">Time: 75</div>
+      <div id="timerCount"></div>
     </header>
     <main>
-      <section class="card">
-        <div class="section-style" id="start-section">
-          <div class="Start-End-Header">
-            <h1>Coding Quiz Challenge</h1>
-            <p>Answer the following code related questions within the time limit.
-                Keep in mind that the incorrect answers will penalize your score by
-                10 seconds.
-            </p>
-          </div>
-          <button class="btn-strt" id="start-quiz">Start Quiz</button>
-        </div>
-      </section>
+      <div id="timedQuiz">
+        <h1>Timed Quiz</h1> 
+        <button class="startBtn" id="startBtn">Start Quiz</button>
+      </div>
 
-      <section class="card">
-        <div class="section-style" id="first-section">
-            <div class="Question-Header">
-                <h1>CSS sections are inclosed between what type of character?:</h1>
-            </div>
-            <div class="Question-options">
-                <button class="option-button" id="q1-w1">1. Parenthesis "()"</button>
-                <button class="option-button" id="q1-w2">2. Square Brackets "[]"</button>
-                <button class="option-button" id="q1-c">3. Curly Brackets "{}"</button>
-                <button class="option-button" id="q1-w3">4. Angle Brackets "<>"</button>
-            </div>
-            <div class="first-q-alert">
-                <h3 id="response-1"></h3>
-            </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-style" id="second-section">
-            <div class="Question-Header">
-                <h1>Commonly used data types DO NOT include:</h1>
-            </div>
-            <div class="Question-options">
-                <button class="option-button" id="q2-w1">1. Strings</button>
-                <button class="option-button" id="q2-w2">2. Booleans</button>
-                <button class="option-button" id="q2-c">3. Alerts</button>
-                <button class="option-button" id="q2-w3">4. Numbers</button>
-            </div>
-            <div class="second-q-alert">
-                <h3 id="response-2"></h3>
-            </div>
-        </div>
-      </section>
-    
-      <section class="card">
-        <div class="section-style" id="third-section">
-            <div class="Question-Header">
-                <h1>Arrays in JavaScript can be used to store ____.:</h1>
-            </div>
-            <div class="Question-options">
-                <button class="option-button" id="q3-w1">1. Numbers and Strings</button>
-                <button class="option-button" id="q3-w2">2. Other Arrays</button>
-                <button class="option-button" id="q3-w3">3. Booleans</button>
-                <button class="option-button" id="q3-c">4. All of the above</button>
-            </div>
-            <div class="Third-q-alert">
-                <h3 id="response-3"></h3>
-            </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-style" id="fourth-section">
-            <div class="Question-Header">
-                <h1>String values must be enclosed with ____, when being assigned to a variable.:</h1>
-            </div>
-            <div class="Question-options">
-                <button class="option-button" id="q4-w1">1. Commas ",,"</button>
-                <button class="option-button" id="q4-w2">2. Curly brackets "{}"</button>
-                <button class="option-button" id="q4-c">3. Quotes "''"</button>
-                <button class="option-button" id="q4-w3">4. Parenthesis "()"</button>
-            </div>
-            <div class="Fourth-q-alert">
-                <h3 id="response-4"></h3>
-            </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-style" id="fifth-section">
-            <div class="Question-Header">
-                <h1>A very useful tool for development and debugging for printing content to the debugger:</h1>
-            </div>
-            <div class="Question-options">
-                <button class="option-button" id="q5-c">1. Console.log()</button>
-                <button class="option-button" id="q5-w1">2. Terminal/Bash</button>
-                <button class="option-button" id="q5-w2">3. For Loops</button>
-                <button class="option-button" id="q5-w3">4. JavaScript</button>
-            </div>
-            <div class="Fifth-q-alert">
-                <h3 id="response-5"></h3>
-            </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-style" id="end-section">
-            <div class="Start-End-Header">
-                <h1>All Done!</h1>
-            </div>
-            <div class="final-score">Your final score is: </div>
-            
-            <label for="initialString">Enter your initials: </label>
-            <input type="text" id="initial-enter" name="initialString">
-        </div>
-      </section>
+      <div id="endGame">
+        <h2>Game Over</h2>
+        <form id="score">
+          <input type:"text" placeholder:"Enter Initials Here">
+          <button>Save Score and Initials</button>
+        </form>
+      </div>
+      
     </main>
 
     <script src="./assets/js/script.js"></script>
