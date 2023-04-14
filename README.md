@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a website that gives the uzer a timed quiz to complete. The quiz is four multiple choice questions.
+This is a website that gives the user a timed quiz to complete. The quiz is four multiple choice questions.
 Each question is displayed seperatly along with a start and end page. The clock starts with 60 seconds and 10 seconds are taken off each time the user gets a question wrong. Finally, the user is able to input thier initials as well as save thier score so when they reload the site, thier old scores and who got those scores are displayed for them. 
 
 ## Project Status
