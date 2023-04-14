@@ -11,7 +11,7 @@ Development of this website is complete. It was built using HTML, CSS, and JavaS
 
 ## Visuals
 
-Here is a link to the finished site: 
+Here is a link to the finished site: https://sethschnrt.github.io/Timed-Quiz/
 
 ## Support
 
