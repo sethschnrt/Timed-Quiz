@@ -14,20 +14,26 @@
     </header>
     <main>
       <div id="timedQuiz">
-        <h1>Timed Quiz</h1> 
+        <h1>Timed Quiz</h1>
+        <p>
+          This is a simple, four question quiz, to test your coding knowledge.
+        </p>
         <button class="startBtn" id="startBtn">Start Quiz</button>
       </div>
 
       <div id="endGame">
         <h2>Game Over</h2>
+        <h4 id="result"></h4>
         <form id="score">
-          <input type:"text" placeholder:"Enter Initials Here">
-          <button>Save Score and Initials</button>
+          <label class="labelSwag" for="initialsInput"
+            >Enter your initials here:
+          </label>
+          <input id="initialsInput" type:"text">
+          <button id="initialsBtn">Save Score and Initials</button>
         </form>
       </div>
-      
     </main>
-
+    <div id="alert"></div>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

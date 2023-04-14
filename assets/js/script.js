@@ -5,6 +5,8 @@ var timerEl = document.getElementById("timerCount");
 var mainEl = document.getElementById("main");
 var childElements = quizSection.children;
 var scoreForm = document.getElementById("score");
+var endGameContainer = document.getElementById("endGame");
+var alertDivContainer = document.getElementById("alert");
 // Variable that gives me a starting amount on my timer
 var timerCount = 60;
 var score;
@@ -56,9 +58,9 @@ function startQuiz(event) {
   event.preventDefault();
   startTimer();
   generateQuestion();
-  generateAnswerChoices();
-  validateAnswer();
 }
+
+var timer;
 // This function increments the timerCount variable by negative 1 each second and displays a string based on what the user should see.
 function startTimer() {
   timer = setInterval(function () {
@@ -69,16 +71,18 @@ function startTimer() {
       timerEl.textContent = timerCount + " second remaining.";
       timerCount--;
     } else {
-      timerEl.textContent = "";
       endGame();
+      quizSection.innerHTML = "";
     }
   }, 1000);
 }
 
 function generateQuestion() {
+  quizSection.innerHTML = "";
   var question = quizQuestions[currentQuestion].question;
   var multiChoice = document.createElement("div");
   multiChoice.textContent = question;
+  multiChoice.setAttribute("id", "multiChoice");
   quizSection.appendChild(multiChoice);
   generateAnswerChoices();
 }
@@ -90,61 +94,85 @@ function generateAnswerChoices() {
     i++
   ) {
     var answerChoices = quizQuestions[currentQuestion].answerChoices;
+
     var choice = document.createElement("button");
+    choice.setAttribute("id", "choice");
     choice.textContent = answerChoices[i];
-    choice.addEventListener("click", function () {
-      validateAnswer(choice);
+    choice.addEventListener("click", function (event) {
+      var userChoice = event.target.textContent;
+      console.log(userChoice);
+      var alertDiv = document.createElement("div");
+      var correctAnswer = quizQuestions[currentQuestion].correctAnswer;
+      if (userChoice === correctAnswer) {
+        alertDivContainer.textContent = "The last answer was correct!";
+      } else {
+        alertDivContainer.textContent = "The last answer was wrong!";
+        timerCount -= 10;
+      }
+      if (currentQuestion >= quizQuestions.length - 1) {
+        endGame();
+        for (let i = childElements.length - 1; i >= 0; i--) {
+          quizSection.removeChild(childElements[i]);
+        }
+      } else {
+        currentQuestion++;
+        generateQuestion();
+      }
     });
     quizSection.appendChild(choice);
   }
 }
 
-function validateAnswer(event) {
-  event.preventDefault();
-  var userChoice = event.target.textContent;
-  console.log(userChoice);
-  var alertDiv = document.createElement("div");
-  var correctAnswer = quizQuestions[currentQuestion].correctAnswer;
-  if (userChoice === correctAnswer) {
-    var correctAnswer = alert("Correct!");
-    alertDiv.innerHTML = correctAnswer;
-  } else {
-    var wrongAnswer = alert("Wrong answer.");
-    alertDiv.innerHTML = wrongAnswer;
-    timerCount -= 10;
-  }
-  currentQuestion++;
-  if (currentQuestion === quizQuestions.length) {
-    endGame();
-    for (let i = childElements.length - 1; i >= 0; i--) {
-      quizSection.removeChild(childElements[i]);
-    }
-  }
-  generateQuestion();
-}
+endGameContainer.style.display = "none";
+var result = document.getElementById("result");
 
 function endGame() {
+  clearInterval(timer);
+  timerEl.textContent = "";
+  endGameContainer.style.display = "block";
   quizSection.display = "none";
   var endGameDisplay = document.createElement("div");
   quizSection.appendChild(endGameDisplay);
-
   score = timerCount;
+  result.innerHTML = "You got a score of: " + score;
   score.display = "inline";
 }
+
+var initialsBtn = document.getElementById("initialsBtn");
+var initialsInput = document.getElementById("initialsInput");
+
+initialsBtn.addEventListener("click", saveScore);
+
 
 function saveScore(event) {
   event.preventDefault();
 
   var scoreObj = {
-    initials: event.target.children[0].value,
+    initials: initialsInput.value,
     score: timerCount,
   };
-  localStorage.setItem("score", JSON.stringify(scoreObj));
+  var scoreHistory = JSON.parse(localStorage.getItem("score"));
+  if (scoreHistory == null || scoreHistory == undefined) {
+    scoreHistory = [];
+  }
+  scoreHistory.push(scoreObj);
+  localStorage.setItem("score", JSON.stringify(scoreHistory));
+  getScore();
+  
 }
 
 function getScore() {
-  var score = JSON.parse(localStorage.getItem("score"));
-  endGameDisplay.appendChild(score);
+  
+    var score = JSON.parse(window.localStorage.getItem("score"));
+  console.log(score);
+  var scoreBoard = document.createElement("ul");
+
+  for(let i = 0; i < score.length; i++) {
+  var li = document.createElement("li");
+  li.innerHTML = `${score[i].initials} - ${score[i].score}`;
+  //scoreBoard.append(li)
+  endGameContainer.append(li);
+  }
 }
 startBtn.addEventListener("click", startQuiz);
 
