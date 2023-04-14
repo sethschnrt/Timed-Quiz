@@ -29,6 +29,6 @@ Credits to my teachers assistants Ethan Cho and Jack Goers, as well as my tutor 
 MIT License
 
 ## Website Screenshot
-
+![Untitled](https://user-images.githubusercontent.com/127680441/231928674-98801e8b-a4dd-4100-bef8-d96f40d09ff3.png)
 
 
